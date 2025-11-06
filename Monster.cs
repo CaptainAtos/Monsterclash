@@ -19,16 +19,12 @@ namespace Monsterclash
             m_AP = _AP;
             m_DP = _DP;
             m_SP = _SP;
-
-            Console.WriteLine("Hallo Welt! Ich bin geboren!");
         
         }
-        public void MakeNoise()
-        {
+        public abstract void MakeNoise();
+        
 
-        }
-
-        public void Attack(Monster _defender) //Pikachu, attackiere Flegmon!!
+        public void Attack(Monster _defender) // Monster1, attackiere Monster2!!
         {
             float dmg = m_AP / _defender.m_DP * 10;
 
@@ -44,72 +40,47 @@ namespace Monsterclash
         }
     }
 
-    public class FlyingMonsters : Monster
+    public class Ghost : Monster
     {
-        private float DOP; // DodgePoints
+        protected float m_DoP; // Dodgepoints
 
-        public FlyingMonsters(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
+        public override void MakeNoise()
         {
-            
+            Console.WriteLine("BuuuuuuuuHhhhhh Hehehehe");
+        }
+        public Ghost(float _HP, float _AP, float _DP, float _SP, float _DoP) : base(_HP, _AP, _DP, _SP)
+        {
+            m_DoP = _DoP;
         }
     }
 
-    public class MagicMonster : FlyingMonsters
+    public class Witch : Monster 
     {
-        private float MP; // Manapunkte
-
-        public MagicMonster(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
+        protected float m_MP; // MagicPoints
+        public override void MakeNoise()
         {
+            Console.WriteLine("Iieeehehehe wenn ich mit dir fertig bin, kommst du auch in meinem Kessel hehehe");
+        }
 
+        public Witch(float _HP, float _AP, float _DP, float _SP, float _MP) :base(_HP, _AP, _DP, _SP) 
+        {
+            m_MP = _MP;
         }
     }
 
-    public class HerrdesWaldes : MagicMonster
+    public class Skeleton : Monster 
     {
-        public HerrdesWaldes(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
+        public override void MakeNoise()
         {
-
+            Console.WriteLine("*böses Knochengeklimper*");
         }
-    }
 
-    public class Drache : MagicMonster
-    {
-        public Drache(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
+        public Skeleton(float _HP, float _AP, float _DP, float _SP) :base( _HP, _AP, _DP, _SP) 
         {
+        
+         }
 
-        }
+
+
     }
-
-    public class Pestjungfrau : MagicMonster
-    {
-        public Pestjungfrau(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
-        {
-
-        }
-    }
-
-    public class Golem : Monster
-    {
-        public Golem(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
-        {
-
-        }
-    }
-
-    public class Wyvern : Monster
-    {
-        public Wyvern(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
-        {
-
-        }
-    }
-
-    public class Troll : Monster
-    {
-        public Troll(float _HP, float _AP, float _DP, float _SP) : base(_HP, _AP, _DP, _SP)
-        {
-
-        }
-    }
-
 }
