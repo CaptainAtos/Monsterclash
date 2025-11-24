@@ -6,8 +6,7 @@
         {
             Game game = new Game();
 
-            game.Init();
-            //game.Run();
+            game.Run();
             //game.End();
 
             Console.ReadKey();
