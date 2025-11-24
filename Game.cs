@@ -27,9 +27,9 @@ namespace Monsterclash
 
         private void InitiateMonsterlist()
         {
-            Monster a = new Ghost("Mittagserscheinung", 2, 2, 2, 2, 2);
-            Monster b = new Witch("Babajaga", 2, 2, 2, 2, 2);
-            Monster c = new Skeleton("Knorge", 2, 2, 2, 2);
+            Monster a = new Ghost("Mittagserscheinung", 100, 15, 0, 80, 2);
+            Monster b = new Witch("Babajaga", 100, 20, 25, 40, 2);
+            Monster c = new Skeleton("Knorge", 80, 20, 40, 55);
 
             m_availableMonsters.Add(a);
             m_availableMonsters.Add(b);
