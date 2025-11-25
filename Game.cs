@@ -1,5 +1,6 @@
 ﻿
 using System.Data;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 
 namespace Monsterclash
@@ -27,16 +28,17 @@ namespace Monsterclash
 
         private void InitiateMonsterlist()
         {
-            Monster a = new Ghost("Mittagserscheinung", 100, 15, 0, 80, 2);
-            Monster b = new Witch("Babajaga", 100, 20, 25, 40, 2);
-            Monster c = new Skeleton("Knorge", 80, 20, 40, 55);
+            Monster a = new Ghost("Mittagserscheinung");
+            Monster b = new Witch("Babajaga");
+            Monster c = new Skeleton("Knorge");
 
             m_availableMonsters.Add(a);
             m_availableMonsters.Add(b);
             m_availableMonsters.Add(c);
 
             DisplayAvailableMonster();
-            HandleMonsterSelection();
+            Monster selected = HandleMonsterSelection();
+            selected.SetMonsterPoints();
 
             DisplayAvailableMonster();
             DisplaySelectedMonster();
@@ -45,7 +47,7 @@ namespace Monsterclash
             DisplaySelectedMonster();
         }
 
-        private void HandleMonsterSelection()
+        private Monster HandleMonsterSelection()
         {
             Console.WriteLine("Bitte wähle ein Monster aus und bestätige mit Enter:");
             string input = Console.ReadLine()!;
@@ -56,7 +58,7 @@ namespace Monsterclash
                 {
                     Console.WriteLine($"Monster {m_availableMonsters[choice - 1].Name}? Gute Wahl");
                     SelectMonster(m_availableMonsters[choice - 1]);
-                    break;
+                    return m_availableMonsters[choice - 1];
                 }
 
                 Console.WriteLine("Falsche Wahl, bitte noch mal:");
@@ -122,24 +124,24 @@ namespace Monsterclash
             Monster second = M2;
 
             // Wählt aus welches Monster zuerst angreifen darf anhand seine "Speedpoints"
-            if (M1.m_SP > M2.m_SP) 
+            if (M1.SP > M2.SP) 
             {
                 first = M1;
                 second = M2;
             }
-            else if (M2.m_SP > M1.m_SP)
+            else if (M2.SP > M1.SP)
             {
                 first = M2;
                 second = M1;
             }
             else
             { // Wenn beide Monster die selben "Speedpoints" darf der mit den höheren "Attackpoints" angreifen
-                if (M1.m_AP > M2.m_AP)
+                if (M1.AP > M2.AP)
                 {
                     first = M1;
                     second = M2;
                 }
-                else if (M1.m_AP < M2.m_AP)
+                else if (M1.AP < M2.AP)
                 {
                     first = M2;
                     second = M1;

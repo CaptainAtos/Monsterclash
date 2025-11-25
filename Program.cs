@@ -4,12 +4,12 @@
     {
         static void Main()
         {
-            Game game = new Game();
+            //Game game = new Game();
 
-            game.Run();
+            //game.Run();
             //game.End();
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

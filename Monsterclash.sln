@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monsterclash", "Monsterclash.csproj", "{679A37B9-E28F-4128-86E7-F02F490384B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMonsterClash", "..\SimpleMonsterClash\SimpleMonsterClash.csproj", "{2129EFF0-8C8A-4F44-BB90-C1324B339171}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{679A37B9-E28F-4128-86E7-F02F490384B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679A37B9-E28F-4128-86E7-F02F490384B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679A37B9-E28F-4128-86E7-F02F490384B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2129EFF0-8C8A-4F44-BB90-C1324B339171}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2129EFF0-8C8A-4F44-BB90-C1324B339171}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2129EFF0-8C8A-4F44-BB90-C1324B339171}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2129EFF0-8C8A-4F44-BB90-C1324B339171}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2730521-AF94-4BE9-B0F1-B6E3F10727AD}
 	EndGlobalSection
 EndGlobal

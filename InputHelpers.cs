@@ -14,7 +14,7 @@
         public static bool CheckUserInputIntRange(string _input, int _min, int _max, out int _result)
         {
             bool correctInput = int.TryParse(_input, out _result);
-
+            
             if (correctInput)
                 if (_result >= _min && _result <= _max)
                     return true;

@@ -23,12 +23,36 @@ namespace Monsterclash
                 m_name = value;         //   m_name = _value;
             }                          // }
         }
+        public float CurrentHP 
+        {
+            get 
+            {
+                return m_currentHP;
+            }
+        }
+
+        public float AP 
+        {
+            get 
+            {
+                return m_AP;
+            }
+        }
+
+        public float SP 
+        {
+            get 
+            {
+                return m_SP;
+            }
+        }
+
 
         protected float m_maxHP; // Start Lebenspunkte
-        public float m_currentHP; // Aktuelle HP
-        public float m_AP; // Angriffspunkte
+        protected float m_currentHP; // Aktuelle HP
+        protected float m_AP; // Angriffspunkte
         protected float m_DP; // Verteildigungspunkte
-        public float m_SP; // Geschwindigkeitspunkte
+        protected float m_SP; // Geschwindigkeitspunkte
         protected string m_name;
         public bool IsAlive => m_currentHP > 0;
 
@@ -50,32 +74,63 @@ namespace Monsterclash
         /// <param name="_defender">Das andere Monster</param>
         public void Attack( Monster _defender) // Monster1, attackiere Monster2!!
         {
-            float dmg = m_AP / _defender.m_DP * 10; //Formel zur Berechnung der AP des Angreifers in Bezug auf die DP des Verteildigers.
+            float dmg = m_AP / _defender.m_DP * 2; //Formel zur Berechnung der AP des Angreifers in Bezug auf die DP des Verteildigers.
 
-            Console.WriteLine($"Ich bin {Name}, greife jetzt {_defender.Name} an und ziehe {dmg} Lebenspunkte ab!");
+            Console.WriteLine($"Das Monster {Name}, greift {_defender.Name} an!");
+            
 
-            _defender.TakeDamage(dmg);
+            _defender.TakeDamage(dmg, _defender);
         }
 
-        public void TakeDamage(float _dmg)
+        public void TakeDamage(float _dmg, Monster _defender)
         {
             m_currentHP -= _dmg; // HP = HP - _DMG;
-            Console.WriteLine($"Ich bin {Name} und mir wurden {_dmg} Lebenspunkte abgezogen und ich habe nur noch {m_currentHP}!");
+            Console.WriteLine($"Dem Monster {Name} wurden {_dmg} Lebenspunkte abgezogen es hat noch {m_currentHP} HP!");
+            _defender.MakeNoise();
 
             if (!IsAlive)
             {
                 Console.WriteLine("Dieses Monster wurde besiegt!");
             }
         }
+
+        public void SetMonsterPoints()
+        {
+            int InputHP;
+            int InputAP;
+            int InputDP;
+            int InputSP;
+
+            Console.WriteLine("Gib die Lebenspunkte deines Monsters an zwischen 1 - 100");
+            string consoleInput = Console.ReadLine()!;
+
+            InputHelpers.CheckUserInputIntRange(consoleInput, 1, 100, out InputHP);
+            m_currentHP = InputHP;
+
+            Console.WriteLine("Gib die Angriffspunkte deines Monsters an zwischen 20 - 80");
+            consoleInput = Console.ReadLine()!;
+
+            InputHelpers.CheckUserInputIntRange(consoleInput, 20, 80, out InputAP);
+            m_AP = InputAP;
+
+            Console.WriteLine("Gib die Verteidigungspunkte deines Monsters an zwischen 20 - 80");
+
+
+            //TODO
+
+
+
+        }
+
     }
 
     public class Ghost : Monster
     {
         public override void MakeNoise()
         {
-            Console.WriteLine("BuuuuuuuuHhhhhh Hehehehe");
+            Console.WriteLine("Auuaaa Buuuuhuuuuu!");
         }
-        public Ghost(string _name, float _HP, float _AP, float _DP, float _SP, float _DoP) : base(_name, _HP, _AP, _DP, _SP)
+        public Ghost(string _name, float _HP = 0, float _AP = 0, float _DP = 0, float _SP = 0) : base(_name, _HP, _AP, _DP, _SP)
         {
 
         }
@@ -86,10 +141,10 @@ namespace Monsterclash
         protected float m_MP; // MagicPoints
         public override void MakeNoise()
         {
-            Console.WriteLine("Iieeehehehe wenn ich mit dir fertig bin, kommst du auch in meinem Kessel hehehe");
+            Console.WriteLine("Auuuuu! Dafür kommst du in meinen Kochtopf!");
         }
 
-        public Witch(string _name, float _HP, float _AP, float _DP, float _SP, float _MP) : base(_name, _HP, _AP, _DP, _SP)
+        public Witch(string _name, float _HP = 0, float _AP = 0, float _DP = 0, float _SP = 0, float _MP = 50) : base(_name, _HP, _AP, _DP, _SP)
         {
             m_MP = _MP;
         }
@@ -102,7 +157,7 @@ namespace Monsterclash
             Console.WriteLine("*böses Knochengeklimper*");
         }
 
-        public Skeleton(string _name, float _HP, float _AP, float _DP, float _SP) : base(_name, _HP, _AP, _DP, _SP)
+        public Skeleton(string _name, float _HP = 0, float _AP = 0, float _DP = 0, float _SP = 0) : base(_name, _HP, _AP, _DP, _SP)
         {
 
         }
